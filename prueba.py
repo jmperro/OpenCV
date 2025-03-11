@@ -25,12 +25,14 @@ def preprocess_image(image_path):
 	binary = cv2.adaptiveThreshold(blurred, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY_INV, 11, 2)
 	# binary = cv2.adaptiveThreshold(blurred, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY_INV, 25, 10)
 	
+	cv2.imwrite("binary_debug1.jpg", binary)
+	
 	# Operación morfológica para cerrar los bordes de las casillas
 	kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3))
 	# kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (5, 5))
 	binary = cv2.morphologyEx(binary, cv2.MORPH_CLOSE, kernel, iterations=1)
 	
-	# cv2.imwrite("binary_debug.jpg", binary)
+	cv2.imwrite("binary_debug2.jpg", binary)
 
 	return image, binary
 
